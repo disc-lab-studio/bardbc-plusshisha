@@ -9,6 +9,77 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
+        // ==========================================
+        // 【店舗管理用】メニュー＆料金設定エリア
+        // 変更したい場合はこちらを書き換えてください。
+        // ==========================================
+        const STORE_CONFIG = {
+            tableCharge: {
+                ja: "※テーブルチャージ：お一人様 <strong class='text-accent font-normal'>¥500</strong> 頂戴しております。",
+                en: "*Table Charge: <strong class='text-accent font-normal'>¥500</strong> per person."
+            },
+            shisha: [
+                {
+                    nameJa: "スタンダードミックス",
+                    nameEn: "Standard Mix",
+                    price: "¥2,200",
+                    descJa: "お好きなフレーバーを2種類までミックス。すっきりとした吸い心地。",
+                    descEn: "Mix up to 2 flavors of your choice. Smooth and clean taste."
+                },
+                {
+                    nameJa: "DBCスペシャルフルーツ",
+                    nameEn: "DBC Special Fruit",
+                    price: "¥2,500",
+                    descJa: "トロピカル系とベリーを贅沢にブレンドした店長イチオシの味。",
+                    descEn: "Manager's recommendation blending tropical fruits and berries."
+                },
+                {
+                    nameJa: "アイス＆ミント清涼ミックス",
+                    nameEn: "Ice & Mint Cool Mix",
+                    price: "¥2,300",
+                    descJa: "強めの冷涼感でリフレッシュ。お酒との相性も抜群です。",
+                    descEn: "Refreshing strong coolness. Perfect pairing with drinks."
+                },
+                {
+                    nameJa: "リラックスカモミール",
+                    nameEn: "Relaxing Chamomile",
+                    price: "¥2,400",
+                    descJa: "ハーブ系の優しい香りで、ゆったりとした時間を演出します。",
+                    descEn: "Gentle herbal scent to create a relaxing atmosphere."
+                }
+            ],
+            drink: [
+                {
+                    nameJa: "オリジナルシーシャカクテル",
+                    nameEn: "Original Shisha Cocktail",
+                    price: "¥800",
+                    descJa: "当店の雰囲気に合わせた、ハーブ香る特製カクテル。",
+                    descEn: "Special cocktail with herbal aroma matching our bar's vibe."
+                },
+                {
+                    nameJa: "ウィスキー各種 (山崎 / 白州等)",
+                    nameEn: "Whisky Selection",
+                    price: "¥900〜",
+                    descJa: "厳選されたジャパニーズウィスキーやバーボンを取り揃え。",
+                    descEn: "Carefully selected Japanese whiskies and bourbons."
+                },
+                {
+                    nameJa: "クラフトビール",
+                    nameEn: "Craft Beer",
+                    price: "¥850",
+                    descJa: "キレとコクのある、シーシャにもよく合う一杯。",
+                    descEn: "Crisp and rich beer that pairs well with shisha."
+                },
+                {
+                    nameJa: "ノンアルコール・カクテル",
+                    nameEn: "Mocktails",
+                    price: "¥700",
+                    descJa: "フルーツをふんだんに使った爽やかなモックテル。",
+                    descEn: "Refreshing mocktails made with plenty of fresh fruits."
+                }
+            ]
+        };
+
         tailwind.config = {
             theme: {
                 extend: {
@@ -32,7 +103,7 @@
             scroll-behavior: smooth;
         }
         .hero-bg {
-            background-image: linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.9)), url('image_d3e483.jpg');
+            background-image: linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.9)), url('https://placehold.co/1920x1080/111111/d4af37?text=BAR+DBC+PLUS+SHISHA');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -70,9 +141,15 @@
                     EN / JP
                 </button>
             </nav>
-            <button class="md:hidden text-gray-300 hover:text-white" id="mobileMenuBtn">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
+            <div class="flex items-center gap-3 md:hidden">
+                <!-- モバイル用：ヘッダーに常時表示する言語切り替えボタン -->
+                <button id="mobileLangToggle" class="px-2.5 py-1 text-xs border border-gray-500 rounded-full hover:border-accent hover:text-accent transition-colors text-gray-300">
+                    EN / JP
+                </button>
+                <button class="text-gray-300 hover:text-white p-1" id="mobileMenuBtn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
         </div>
         <div id="mobileNav" class="hidden md:hidden bg-darker border-b border-gray-800 pb-4 px-6 absolute w-full left-0 top-full">
             <div class="flex flex-col gap-4 pt-4">
@@ -81,9 +158,6 @@
                 <a href="#party-plan" class="mobile-link hover:text-accent transition-colors"><span class="lang-ja">パーティー</span><span class="lang-en">Party</span></a>
                 <a href="#gallery" class="mobile-link hover:text-accent transition-colors"><span class="lang-ja">ギャラリー</span><span class="lang-en">Gallery</span></a>
                 <a href="#info" class="mobile-link hover:text-accent transition-colors"><span class="lang-ja">店舗情報</span><span class="lang-en">Info</span></a>
-                <button id="mobileLangToggle" class="text-left w-max px-3 py-1 text-sm border border-gray-500 rounded-full hover:border-accent hover:text-accent transition-colors">
-                    Switch to English
-                </button>
             </div>
         </div>
     </header>
@@ -122,7 +196,7 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2 fade-in-up">
-                    <img src="image_d3e1bd.jpg" alt="シーシャの煙" class="rounded-lg shadow-2xl w-full h-auto object-contain">
+                    <img src="https://placehold.co/600x400/222222/d4af37?text=Shisha+Atmosphere" alt="シーシャの煙" class="rounded-lg shadow-2xl w-full h-auto object-cover">
                 </div>
                 <div class="md:w-1/2 fade-in-up" style="transition-delay: 0.2s;">
                     <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white border-l-4 border-accent pl-4">
@@ -155,7 +229,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="group bg-dark rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-accent/50 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)] transition-all duration-500 fade-in-up" style="transition-delay: 0.1s;">
                     <div class="h-48 overflow-hidden">
-                        <img src="image_d3e183.png" alt="Premium Shisha" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="https://placehold.co/600x400/1a1a1a/d4af37?text=Premium+Shisha" alt="Premium Shisha" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-3 text-accent">
@@ -170,7 +244,7 @@
                 </div>
                 <div class="group bg-dark rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-accent/50 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)] transition-all duration-500 fade-in-up" style="transition-delay: 0.2s;">
                     <div class="h-48 overflow-hidden">
-                        <img src="image_d3e146.png" alt="Drinks & Cocktails" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="https://placehold.co/600x400/1a1a1a/d4af37?text=Drinks" alt="Drinks & Cocktails" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-3 text-accent">
@@ -185,7 +259,7 @@
                 </div>
                 <div class="group bg-dark rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-accent/50 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)] transition-all duration-500 fade-in-up" style="transition-delay: 0.3s;">
                     <div class="h-48 overflow-hidden">
-                        <img src="image_d3e17f.png" alt="Relaxing Space & Darts" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="https://placehold.co/600x400/1a1a1a/d4af37?text=Darts+Space" alt="Relaxing Space & Darts" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-3 text-accent">
@@ -283,16 +357,16 @@
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="overflow-hidden rounded-lg fade-in-up">
-                    <img src="image_d3e11f.png" alt="Bar Counter" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
+                    <img src="https://placehold.co/400x300/1a1a1a/d4af37?text=Bar+Counter" alt="Bar Counter" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
                 </div>
                 <div class="overflow-hidden rounded-lg fade-in-up" style="transition-delay: 0.1s;">
-                    <img src="image_d3e13d.png" alt="Liquor Bottles" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
+                    <img src="https://placehold.co/400x300/1a1a1a/d4af37?text=Bottles" alt="Liquor Bottles" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
                 </div>
                  <div class="overflow-hidden rounded-lg fade-in-up" style="transition-delay: 0.2s;">
-                    <img src="image_d3e124.png" alt="Store Interior" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
+                    <img src="https://placehold.co/400x300/1a1a1a/d4af37?text=Interior" alt="Store Interior" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
                 </div>
                 <div class="overflow-hidden rounded-lg fade-in-up" style="transition-delay: 0.3s;">
-                    <img src="image_d3e17b.png" alt="Signboard" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
+                    <img src="https://placehold.co/400x300/1a1a1a/d4af37?text=Signboard" alt="Signboard" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
                 </div>
             </div>
         </div>
@@ -370,7 +444,7 @@
                         <div class="absolute inset-0 bg-gradient-to-r from-[#833ab4]/10 via-[#fd1d1d]/10 to-[#fcb045]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="flex items-center gap-4 relative z-10">
                             <div class="w-12 h-12 shrink-0 flex items-center justify-center rounded-full bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white shadow-lg">
-                                <svg class="w-1/2 h-1/2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
@@ -387,7 +461,7 @@
                         <div class="absolute inset-0 bg-[#1877F2]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="flex items-center gap-4 relative z-10">
                             <div class="w-12 h-12 shrink-0 flex items-center justify-center rounded-full bg-[#1877F2] text-white shadow-lg">
-                                <svg class="w-1/2 h-1/2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                 </svg>
                             </div>
@@ -461,85 +535,11 @@
     </div>
 
     <script>
-        // ==========================================
-        // 【店舗管理用】メニュー＆料金設定エリア
-        // 変更したい場合はこちらを書き換えてください。
-        // ==========================================
-        const STORE_CONFIG = {
-            tableCharge: {
-                ja: "※テーブルチャージ：お一人様 <strong class='text-accent font-normal'>¥1000</strong> 頂戴しております。",
-                en: "*Table Charge: <strong class='text-accent font-normal'>¥1000</strong> per person."
-            },
-            shisha: [
-                {
-                    nameJa: "スタンダードミックス",
-                    nameEn: "Standard Mix",
-                    price: "¥2,200",
-                    descJa: "お好きなフレーバーを2種類までミックス。すっきりとした吸い心地。",
-                    descEn: "Mix up to 2 flavors of your choice. Smooth and clean taste."
-                },
-                {
-                    nameJa: "DBCスペシャルフルーツ",
-                    nameEn: "DBC Special Fruit",
-                    price: "¥2,500",
-                    descJa: "トロピカル系とベリーを贅沢にブレンドした店長イチオシの味。",
-                    descEn: "Manager's recommendation blending tropical fruits and berries."
-                },
-                {
-                    nameJa: "アイス＆ミント清涼ミックス",
-                    nameEn: "Ice & Mint Cool Mix",
-                    price: "¥2,300",
-                    descJa: "強めの冷涼感でリフレッシュ。お酒との相性も抜群です。",
-                    descEn: "Refreshing strong coolness. Perfect pairing with drinks."
-                },
-                {
-                    nameJa: "リラックスカモミール",
-                    nameEn: "Relaxing Chamomile",
-                    price: "¥2,400",
-                    descJa: "ハーブ系の優しい香りで、ゆったりとした時間を演出します。",
-                    descEn: "Gentle herbal scent to create a relaxing atmosphere."
-                }
-            ],
-            drink: [
-                {
-                    nameJa: "オリジナルシーシャカクテル",
-                    nameEn: "Original Shisha Cocktail",
-                    price: "¥800",
-                    descJa: "当店の雰囲気に合わせた、ハーブ香る特製カクテル。",
-                    descEn: "Special cocktail with herbal aroma matching our bar's vibe."
-                },
-                {
-                    nameJa: "ウィスキー各種 (山崎 / 白州等)",
-                    nameEn: "Whisky Selection",
-                    price: "¥900〜",
-                    descJa: "厳選されたジャパニーズウィスキーやバーボンを取り揃え。",
-                    descEn: "Carefully selected Japanese whiskies and bourbons."
-                },
-                {
-                    nameJa: "クラフトビール",
-                    nameEn: "Craft Beer",
-                    price: "¥850",
-                    descJa: "キレとコクのある、シーシャにもよく合う一杯。",
-                    descEn: "Crisp and rich beer that pairs well with shisha."
-                },
-                {
-                    nameJa: "ノンアルコール・カクテル",
-                    nameEn: "Mocktails",
-                    price: "¥700",
-                    descJa: "フルーツをふんだんに使った爽やかなモックテル。",
-                    descEn: "Refreshing mocktails made with plenty of fresh fruits."
-                }
-            ]
-        };
-
-        // ==========================================
-        // 以下、システム動作・UI制御スクリプト
-        // ==========================================
         document.getElementById('year').textContent = new Date().getFullYear();
 
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileNav = document.getElementById('mobileNav');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const mobileLinks = document.querySelectorAll('#mobileNav a');
 
         mobileMenuBtn.addEventListener('click', () => {
             mobileNav.classList.toggle('hidden');
@@ -560,20 +560,17 @@
             isEnglish = !isEnglish;
             if (isEnglish) {
                 body.classList.add('en-mode');
-                langToggleBtn.textContent = 'JP / EN';
-                mobileLangToggleBtn.textContent = '日本語に切り替え';
+                if (langToggleBtn) langToggleBtn.textContent = 'JP / EN';
+                if (mobileLangToggleBtn) mobileLangToggleBtn.textContent = 'JP / EN';
             } else {
                 body.classList.remove('en-mode');
-                langToggleBtn.textContent = 'EN / JP';
-                mobileLangToggleBtn.textContent = 'Switch to English';
+                if (langToggleBtn) langToggleBtn.textContent = 'EN / JP';
+                if (mobileLangToggleBtn) mobileLangToggleBtn.textContent = 'EN / JP';
             }
         }
 
-        langToggleBtn.addEventListener('click', toggleLanguage);
-        mobileLangToggleBtn.addEventListener('click', () => {
-            toggleLanguage();
-            mobileNav.classList.add('hidden');
-        });
+        if (langToggleBtn) langToggleBtn.addEventListener('click', toggleLanguage);
+        if (mobileLangToggleBtn) mobileLangToggleBtn.addEventListener('click', toggleLanguage);
 
         let currentCategory = 'shisha';
 
