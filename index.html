@@ -50,27 +50,6 @@
             ],
             drink: [
                 {
-                    nameJa: "オリジナルシーシャカクテル",
-                    nameEn: "Original Shisha Cocktail",
-                    price: "¥800",
-                    descJa: "当店の雰囲気に合わせた、ハーブ香る特製カクテル。",
-                    descEn: "Special cocktail with herbal aroma matching our bar's vibe."
-                },
-                {
-                    nameJa: "ウィスキー各種 (山崎 / 白州等)",
-                    nameEn: "Whisky Selection",
-                    price: "¥900〜",
-                    descJa: "厳選されたジャパニーズウィスキーやバーボンを取り揃え。",
-                    descEn: "Carefully selected Japanese whiskies and bourbons."
-                },
-                {
-                    nameJa: "クラフトビール",
-                    nameEn: "Craft Beer",
-                    price: "¥850",
-                    descJa: "キレとコクのある、シーシャにもよく合う一杯。",
-                    descEn: "Crisp and rich beer that pairs well with shisha."
-                },
-                {
                     nameJa: "ノンアルコール・カクテル",
                     nameEn: "Mocktails",
                     price: "¥700",
@@ -86,8 +65,8 @@
                     colors: {
                         dark: '#111111',
                         darker: '#0a0a0a',
-                        accent: '#d4af37',
-                        accentHover: '#b5952f'
+                        accent: '#38bdf8',
+                        accentHover: '#0284c7'
                     },
                     fontFamily: {
                         sans: ['Montserrat', '"Noto Sans JP"', 'sans-serif'],
@@ -181,7 +160,7 @@
                 <span class="lang-en">Premium shisha, a wide variety of drinks, and darts.<br>Spend a special time forgetting the everyday in an industrial yet sophisticated space with exposed concrete.</span>
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#info" class="inline-block bg-accent text-darker font-medium tracking-wide py-3 px-8 rounded-full hover:bg-accentHover transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(212,175,55,0.3)]">
+                <a href="#info" class="inline-block bg-accent text-darker font-medium tracking-wide py-3 px-8 rounded-full hover:bg-accentHover transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(56,189,248,0.3)]">
                     <span class="lang-ja">店舗情報を確認する</span>
                     <span class="lang-en">View Store Info</span>
                 </a>
@@ -240,7 +219,7 @@
                 <div class="relative w-16 h-1 bg-accent mx-auto"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group bg-dark rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-accent/50 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)] transition-all duration-500 fade-in-up" style="transition-delay: 0.1s;">
+                <div class="group bg-dark rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-accent/50 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(56,189,248,0.15)] transition-all duration-500 fade-in-up" style="transition-delay: 0.1s;">
                     <div class="h-56 bg-neutral-900 overflow-hidden relative">
                         <!-- サービス画像 1 -->
                         <img src="image_d3e13d.png" alt="Premium Shisha" class="img-cover group-hover:scale-110 transition-transform duration-700">
@@ -257,7 +236,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="group bg-dark rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-accent/50 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)] transition-all duration-500 fade-in-up" style="transition-delay: 0.2s;">
+                <div class="group bg-dark rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-accent/50 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(56,189,248,0.15)] transition-all duration-500 fade-in-up" style="transition-delay: 0.2s;">
                     <div class="h-56 bg-neutral-900 overflow-hidden relative">
                         <!-- サービス画像 2 -->
                         <img src="image_d3e124.png" alt="Drinks & Cocktails" class="img-cover group-hover:scale-110 transition-transform duration-700">
@@ -274,7 +253,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="group bg-dark rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-accent/50 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)] transition-all duration-500 fade-in-up" style="transition-delay: 0.3s;">
+                <div class="group bg-dark rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-accent/50 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(56,189,248,0.15)] transition-all duration-500 fade-in-up" style="transition-delay: 0.3s;">
                     <div class="h-56 bg-neutral-900 overflow-hidden relative">
                         <!-- サービス画像 3 -->
                         <img src="image_d3e17b.png" alt="Relaxing Space & Darts" class="img-cover group-hover:scale-110 transition-transform duration-700">
@@ -315,31 +294,8 @@
                         <span class="lang-ja">イベントや二次会、打ち上げはもちろん、特別な日のお祝いにも。DBCなら、自由度高く思い通りのパーティースタイルが叶います。最高のスタッフと設備で、思い出に残るひとときをサポートします。</span>
                         <span class="lang-en">Ideal for events, after-parties, and celebrating special occasions. DBC offers a highly flexible space to realize your perfect party style. Our excellent staff and facilities will support you in creating unforgettable memories.</span>
                     </p>
-                    <div class="grid md:grid-cols-2 gap-8 mb-10">
-                        <div class="bg-dark p-6 rounded-xl border border-gray-800">
-                            <h4 class="text-xl font-bold text-white mb-4 flex items-center border-b border-gray-700 pb-2">
-                                <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                                <span class="lang-ja">充実の設備・コンテンツ</span>
-                                <span class="lang-en">Facilities & Contents</span>
-                            </h4>
-                            <ul class="space-y-3 text-gray-400 text-sm font-light">
-                                <li class="flex items-start">
-                                    <span class="text-accent font-bold mr-2 w-28 shrink-0">Sound & Movie</span>
-                                    <span>
-                                        <span class="lang-ja">音響設備 / マイク</span>
-                                        <span class="lang-en">Sound system / Microphone</span>
-                                    </span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-accent font-bold mr-2 w-28 shrink-0">Amuse</span>
-                                    <span>
-                                        <span class="lang-ja">ダーツ</span>
-                                        <span class="lang-en">Darts</span>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="bg-dark p-6 rounded-xl border border-gray-800 relative overflow-hidden">
+                    <div class="max-w-xl mx-auto">
+                        <div class="bg-dark p-6 sm:p-8 rounded-xl border border-gray-800 relative overflow-hidden shadow-lg">
                             <div class="absolute -right-12 -top-12 w-32 h-32 bg-accent/10 rounded-full blur-2xl"></div>
                             <h4 class="text-xl font-bold text-white mb-4 flex items-center border-b border-gray-700 pb-2">
                                 <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -352,12 +308,6 @@
                                 <p class="text-gray-500 text-xs"><span class="lang-ja">※10名様〜ご利用いただけます。</span><span class="lang-en">*Available for groups of 10 or more.</span></p>
                             </div>
                         </div>
-                    </div>
-                    <div class="text-center bg-accent/5 p-4 rounded-lg border border-accent/20">
-                        <p class="text-gray-300 text-sm leading-relaxed font-light">
-                            <span class="lang-ja">音響や映像演出、コンテンツのご相談など、お気軽にお問い合わせください。<br class="hidden sm:block">アイデアに合わせたカスタマイズも大歓迎です！</span>
-                            <span class="lang-en">Please feel free to contact us regarding sound, visual direction, and other content.<br class="hidden sm:block">We welcome customization based on your ideas!</span>
-                        </p>
                     </div>
                 </div>
             </div>
@@ -427,7 +377,7 @@
                             <svg class="w-6 h-6 text-accent mt-1 mr-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             <div>
                                 <h4 class="font-bold text-white"><span class="lang-ja">住所</span><span class="lang-en">Address</span></h4>
-                                <a href="https://www.google.com/maps/search/?api=1&query=東京都大田区大森北1-30-4+小池ビル" target="_blank" rel="noopener noreferrer" class="group block mt-1">
+                                <a href="https://www.google.com/maps/search/?api=1&query=DBC+大森+Bar" target="_blank" rel="noopener noreferrer" class="group block mt-1">
                                     <span class="block text-gray-300 group-hover:text-accent transition-colors duration-300 font-light">
                                         <span class="lang-ja">〒143-0016<br>東京都大田区大森北1-30-4 小池ビルB1</span>
                                         <span class="lang-en">Koike Bldg. B1, 1-30-4 Omorikita,<br>Ota-ku, Tokyo 143-0016</span>
@@ -472,7 +422,7 @@
                     </div>
                 </div>
                 <div class="md:w-1/2 flex flex-col gap-6 justify-center fade-in-up" style="transition-delay: 0.2s;">
-                    <a href="#" target="_blank" class="group relative flex items-center justify-between p-6 bg-darker rounded-2xl border border-gray-800 hover:border-accent/50 overflow-hidden transition-all duration-500 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)] hover:-translate-y-1">
+                    <a href="#" target="_blank" class="group relative flex items-center justify-between p-6 bg-darker rounded-2xl border border-gray-800 hover:border-accent/50 overflow-hidden transition-all duration-500 hover:shadow-[0_10px_30px_rgba(56,189,248,0.15)] hover:-translate-y-1">
                         <div class="absolute inset-0 bg-gradient-to-r from-[#833ab4]/10 via-[#fd1d1d]/10 to-[#fcb045]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="flex items-center gap-4 relative z-10">
                             <div class="w-12 h-12 shrink-0 flex items-center justify-center rounded-full bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white shadow-lg">
@@ -522,7 +472,7 @@
                 </h2>
                 <div class="w-16 h-1 bg-accent mx-auto mb-6"></div>
                 <div class="flex justify-center gap-4">
-                    <button id="btnShisha" onclick="switchMenu('shisha')" class="px-6 py-2.5 rounded-full font-medium transition-all bg-accent text-darker shadow-[0_4px_15px_rgba(212,175,55,0.3)]">
+                    <button id="btnShisha" onclick="switchMenu('shisha')" class="px-6 py-2.5 rounded-full font-medium transition-all bg-accent text-darker shadow-[0_4px_15px_rgba(56,189,248,0.3)]">
                         <span class="lang-ja">シーシャメニュー</span>
                         <span class="lang-en">Shisha Menu</span>
                     </button>
@@ -627,10 +577,10 @@
             const btnDrink = document.getElementById('btnDrink');
 
             if (type === 'shisha') {
-                btnShisha.className = "px-6 py-2.5 rounded-full font-medium transition-all bg-accent text-darker shadow-[0_4px_15px_rgba(212,175,55,0.3)]";
+                btnShisha.className = "px-6 py-2.5 rounded-full font-medium transition-all bg-accent text-darker shadow-[0_4px_15px_rgba(56,189,248,0.3)]";
                 btnDrink.className = "px-6 py-2.5 rounded-full font-medium transition-all bg-darker border border-gray-700 text-gray-300 hover:border-accent";
             } else {
-                btnDrink.className = "px-6 py-2.5 rounded-full font-medium transition-all bg-accent text-darker shadow-[0_4px_15px_rgba(212,175,55,0.3)]";
+                btnDrink.className = "px-6 py-2.5 rounded-full font-medium transition-all bg-accent text-darker shadow-[0_4px_15px_rgba(56,189,248,0.3)]";
                 btnShisha.className = "px-6 py-2.5 rounded-full font-medium transition-all bg-darker border border-gray-700 text-gray-300 hover:border-accent";
             }
             renderMenu(type);
