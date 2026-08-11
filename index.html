@@ -444,12 +444,12 @@
                     </button>
                 </div>
             </div>
-            <!-- 外部menu.jsonから読み込むテーブルチャージ案内エリア -->
+            <!-- テーブルチャージ案内エリア -->
             <div id="tableChargeContainer" class="bg-darker border border-accent/30 rounded-xl p-4 mb-8 text-center">
-                <p class="text-sm text-gray-400">Loading charge info...</p>
+                <!-- Dynamically rendered -->
             </div>
             <div id="menuContent">
-                <div class="text-center text-gray-400 py-12">Loading menu data...</div>
+                <!-- Dynamically rendered -->
             </div>
             <div class="text-center mt-10">
                 <button onclick="closeMenuModal()" class="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full transition-colors text-sm font-medium">
@@ -461,6 +461,80 @@
     </div>
 
     <script>
+        // ==========================================
+        // 【店舗管理用】メニュー＆料金設定エリア
+        // 変更したい場合はこちらを書き換えてください。
+        // ==========================================
+        const STORE_CONFIG = {
+            tableCharge: {
+                ja: "※テーブルチャージ：お一人様 <strong class='text-accent font-normal'>¥1000</strong> 頂戴しております。",
+                en: "*Table Charge: <strong class='text-accent font-normal'>¥1000</strong> per person."
+            },
+            shisha: [
+                {
+                    nameJa: "スタンダードミックス",
+                    nameEn: "Standard Mix",
+                    price: "¥2,200",
+                    descJa: "お好きなフレーバーを2種類までミックス。すっきりとした吸い心地。",
+                    descEn: "Mix up to 2 flavors of your choice. Smooth and clean taste."
+                },
+                {
+                    nameJa: "DBCスペシャルフルーツ",
+                    nameEn: "DBC Special Fruit",
+                    price: "¥2,500",
+                    descJa: "トロピカル系とベリーを贅沢にブレンドした店長イチオシの味。",
+                    descEn: "Manager's recommendation blending tropical fruits and berries."
+                },
+                {
+                    nameJa: "アイス＆ミント清涼ミックス",
+                    nameEn: "Ice & Mint Cool Mix",
+                    price: "¥2,300",
+                    descJa: "強めの冷涼感でリフレッシュ。お酒との相性も抜群です。",
+                    descEn: "Refreshing strong coolness. Perfect pairing with drinks."
+                },
+                {
+                    nameJa: "リラックスカモミール",
+                    nameEn: "Relaxing Chamomile",
+                    price: "¥2,400",
+                    descJa: "ハーブ系の優しい香りで、ゆったりとした時間を演出します。",
+                    descEn: "Gentle herbal scent to create a relaxing atmosphere."
+                }
+            ],
+            drink: [
+                {
+                    nameJa: "オリジナルシーシャカクテル",
+                    nameEn: "Original Shisha Cocktail",
+                    price: "¥800",
+                    descJa: "当店の雰囲気に合わせた、ハーブ香る特製カクテル。",
+                    descEn: "Special cocktail with herbal aroma matching our bar's vibe."
+                },
+                {
+                    nameJa: "ウィスキー各種 (山崎 / 白州等)",
+                    nameEn: "Whisky Selection",
+                    price: "¥900〜",
+                    descJa: "厳選されたジャパニーズウィスキーやバーボンを取り揃え。",
+                    descEn: "Carefully selected Japanese whiskies and bourbons."
+                },
+                {
+                    nameJa: "クラフトビール",
+                    nameEn: "Craft Beer",
+                    price: "¥850",
+                    descJa: "キレとコクのある、シーシャにもよく合う一杯。",
+                    descEn: "Crisp and rich beer that pairs well with shisha."
+                },
+                {
+                    nameJa: "ノンアルコール・カクテル",
+                    nameEn: "Mocktails",
+                    price: "¥700",
+                    descJa: "フルーツをふんだんに使った爽やかなモックテル。",
+                    descEn: "Refreshing mocktails made with plenty of fresh fruits."
+                }
+            ]
+        };
+
+        // ==========================================
+        // 以下、システム動作・UI制御スクリプト
+        // ==========================================
         document.getElementById('year').textContent = new Date().getFullYear();
 
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -501,40 +575,22 @@
             mobileNav.classList.add('hidden');
         });
 
-        let globalMenuData = null;
         let currentCategory = 'shisha';
 
-        // 完全に外部の menu.json ファイルを非同期でフェッチします
-        async function fetchMenuData() {
-            try {
-                const response = await fetch('menu.json');
-                if (!response.ok) throw new Error('menu.json の読み込みに失敗しました');
-                globalMenuData = await response.json();
-                renderTableCharge();
-                renderMenu(currentCategory);
-            } catch (error) {
-                console.error('Error fetching menu:', error);
-                document.getElementById('menuContent').innerHTML = '<p class="text-center text-red-400">メニューデータの読み込みに失敗しました。<br><span class="text-xs text-gray-500">※ローカルで確認される場合はLive Server等をご利用ください。</span></p>';
-                document.getElementById('tableChargeContainer').innerHTML = '<p class="text-sm text-red-400">案内情報の読み込みに失敗しました</p>';
-            }
-        }
-
         function renderTableCharge() {
-            if (!globalMenuData || !globalMenuData.tableCharge) return;
             const container = document.getElementById('tableChargeContainer');
             container.innerHTML = `
                 <p class="text-sm text-gray-300 font-light">
-                    <span class="lang-ja">${globalMenuData.tableCharge.ja}</span>
-                    <span class="lang-en">${globalMenuData.tableCharge.en}</span>
+                    <span class="lang-ja">${STORE_CONFIG.tableCharge.ja}</span>
+                    <span class="lang-en">${STORE_CONFIG.tableCharge.en}</span>
                 </p>
             `;
         }
 
         function renderMenu(type) {
-            if (!globalMenuData) return;
             currentCategory = type;
             const container = document.getElementById('menuContent');
-            const items = globalMenuData[type];
+            const items = STORE_CONFIG[type];
             
             let html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
             items.forEach(item => {
@@ -576,9 +632,8 @@
             const modal = document.getElementById('menuModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
-            if (!globalMenuData) {
-                fetchMenuData();
-            }
+            renderTableCharge();
+            renderMenu(currentCategory);
         }
 
         function closeMenuModal() {
