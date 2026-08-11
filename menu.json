@@ -1,0 +1,66 @@
+{
+"tableCharge": {
+"ja": "※テーブルチャージ：お一人様 <strong class="text-accent font-normal">¥500 頂戴しております。",
+"en": "*Table Charge: <strong class="text-accent font-normal">¥500 per person."
+},
+"shisha": [
+{
+"nameJa": "スタンダードミックス",
+"nameEn": "Standard Mix",
+"price": "¥2,200",
+"descJa": "お好きなフレーバーを2種類までミックス。すっきりとした吸い心地。",
+"descEn": "Mix up to 2 flavors of your choice. Smooth and clean taste."
+},
+{
+"nameJa": "DBCスペシャルフルーツ",
+"nameEn": "DBC Special Fruit",
+"price": "¥2,500",
+"descJa": "トロピカル系とベリーを贅沢にブレンドした店長イチオシの味。",
+"descEn": "Manager's recommendation blending tropical fruits and berries."
+},
+{
+"nameJa": "アイス＆ミント清涼ミックス",
+"nameEn": "Ice & Mint Cool Mix",
+"price": "¥2,300",
+"descJa": "強めの冷涼感でリフレッシュ。お酒との相性も抜群です。",
+"descEn": "Refreshing strong coolness. Perfect pairing with drinks."
+},
+{
+"nameJa": "リラックスカモミール",
+"nameEn": "Relaxing Chamomile",
+"price": "¥2,400",
+"descJa": "ハーブ系の優しい香りで、ゆったりとした時間を演出します。",
+"descEn": "Gentle herbal scent to create a relaxing atmosphere."
+}
+],
+"drink": [
+{
+"nameJa": "オリジナルシーシャカクテル",
+"nameEn": "Original Shisha Cocktail",
+"price": "¥800",
+"descJa": "当店の雰囲気に合わせた、ハーブ香る特製カクテル。",
+"descEn": "Special cocktail with herbal aroma matching our bar's vibe."
+},
+{
+"nameJa": "ウィスキー各種 (山崎 / 白州等)",
+"nameEn": "Whisky Selection",
+"price": "¥900〜",
+"descJa": "厳選されたジャパニーズウィスキーやバーボンを取り揃え。",
+"descEn": "Carefully selected Japanese whiskies and bourbons."
+},
+{
+"nameJa": "クラフトビール",
+"nameEn": "Craft Beer",
+"price": "¥850",
+"descJa": "キレとコクのある、シーシャにもよく合う一杯。",
+"descEn": "Crisp and rich beer that pairs well with shisha."
+},
+{
+"nameJa": "ノンアルコール・カクテル",
+"nameEn": "Mocktails",
+"price": "¥700",
+"descJa": "フルーツをふんだんに使った爽やかなモックテル。",
+"descEn": "Refreshing mocktails made with plenty of fresh fruits."
+}
+]
+}
